@@ -6,9 +6,9 @@ clean:
 rebuild: clean all
 .PHONY: all clean rebuild
 
-IOP_OBJS_DIR = obj/
-IOP_SRC_DIR = src/
-IOP_INC_DIR = $(IOP_SRC_DIR)include/
+IOP_OBJS_DIR := obj/
+IOP_SRC_DIR := src/
+IOP_INC_DIR := $(IOP_SRC_DIR)include/
 IOP_INCS += -I$(IOP_SRC_DIR)
 
 include $(PS2SDK)/Defs.make

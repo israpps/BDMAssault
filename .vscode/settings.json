@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "part_driver.h": "c",
+        "module_debug.h": "c",
+        "mbr_types.h": "c",
+        "bdm.h": "c",
+        "gpt_types.h": "c",
+        "ff.h": "c",
+        "diskio.h": "c",
+        "fs_driver.h": "c",
+        "scsi.h": "c"
+    }
+}
