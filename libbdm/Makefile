@@ -8,12 +8,10 @@
 
 # IOP_CFLAGS += -DDEBUG -Wno-strict-aliasing
 
-IOP_INCS += -I$(PS2SDKSRC)/iop/fs/bdm/include
+IOP_LIB = lib/libbdm.a
 
+IOP_INCS += -I../bdm/include
 IOP_OBJS = bd_defrag.o bd_cache.o
-IOP_LIB = libbdm.a
 
-include $(PS2SDKSRC)/Defs.make
-include $(PS2SDKSRC)/iop/Rules.lib.make
-include $(PS2SDKSRC)/iop/Rules.make
-include $(PS2SDKSRC)/iop/Rules.release
+
+include ../global.make
