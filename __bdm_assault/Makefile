@@ -1,5 +1,5 @@
 
-IOP_BIN = bdm_assault.irx
+IOP_BIN = ../bdm_assault.irx
 
 
 #bdm
@@ -12,7 +12,10 @@ BDMFS_FATFS_OBJS = ff.o ffsystem.o ffunicode.o fs_driver.o diskio.o main.o
 IOP_LIBS += -static-libgcc -lgcc
 
 IOP_OBJS = $(addprefix bdm_,$(BDM_OBJS)) $(addprefix bdmfs_,$(BDMFS_FATFS_OBJS)) imports.o exports.o
-
+ifeq ($(DEBUG), 1)
+  IOP_CFLAGS += -DDEBUG -DDEBUG_EXTREME
+  IOP_BIN = ../bdm_assault_debug.irx
+endif
 include ../global.make
 IOP_SRC_DIR =
 vpath %.c src/

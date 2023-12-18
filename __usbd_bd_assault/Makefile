@@ -1,5 +1,5 @@
 
-IOP_BIN = usbd_bd_assault.irx
+IOP_BIN = ../usbd_bd_assault.irx
 
 #usbd
 USBD_OBJS = hcd.o hub.o interface.o mem.o usbd.o usbio.o driver.o
@@ -11,6 +11,11 @@ IOP_LDFLAGS += -lgcc
 USBMASS_BD_OBJS = main.o usb_mass.o scsi.o
 
 IOP_OBJS = $(addprefix usbd_,$(USBD_OBJS)) $(addprefix usbmass_bd_,$(USBMASS_BD_OBJS)) imports.o exports.o
+ifeq ($(DEBUG), 1)
+  IOP_CFLAGS += -DDEBUG -DDEBUG_EXTREME
+  IOP_BIN = ../usbd_bd_assault_debug.irx
+endif
+
 include ../global.make
 $(IOP_OBJS_DIR)%.o: src/usbd/%.c
 	$(DIR_GUARD)
