@@ -34,6 +34,7 @@ jobs:
           make -C libbdm clean all
           make -C __bdm_assault/ clean all
           make -C __usbd_bd_assault/ clean all
+          make -C __udp_bd_assault/ clean variants
           mkdir -p READY_TO_USE/POPStarter/POPSTARTER/
           mkdir -p READY_TO_USE/FreeMcBoot/SYS-CONF/
           cp bdm_assault.irx READY_TO_USE/POPStarter/POPSTARTER/usbd.irx
