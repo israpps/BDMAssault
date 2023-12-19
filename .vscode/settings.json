@@ -8,6 +8,8 @@
         "ff.h": "c",
         "diskio.h": "c",
         "fs_driver.h": "c",
-        "scsi.h": "c"
+        "scsi.h": "c",
+        "sbp2_disk.h": "c",
+        "ilink_internal.h": "c"
     }
 }
