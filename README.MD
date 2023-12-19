@@ -6,21 +6,41 @@ BDM Assault is a homebrew project for PS2 that aims to bring EXFAT USB support t
 
 To use this project you have to place the two IRX binaries provided at the [release section](https://github.com/israpps/BDMAssault/releases) into the path that your app looks for
 
+### USB
+how to make your old homebrew support EXFAT/FAT32 USB devices
 
-### POPStarter
+#### POPStarter
 - `bdm_assault.irx` must be pasted into `mc?:/POPSTARTER/usbd.irx`
 - `usbd_bd_assault.irx` must be pasted into `mc?:/POPSTARTER/usbhdfsd.irx`
 
-### FreeMcBoot
+#### FreeMcBoot
 - `bdm_assault.irx` must be pasted into `mc?:/SYS-CONF/USBD.IRX`
 - `usbd_bd_assault.irx` must be pasted into `mc?:/SYS-CONF/USBHDFSD.IRX`
 
-### old wLaunchELF versions
+#### old wLaunchELF versions
 - `bdm_assault.irx` must be pasted into the path you configured for `USBD.IRX`
 - `usbd_bd_assault.irx` must be pasted into the path you configured for `USBHDFSD.IRX`
 
-### Any other homebrew
+#### Any other homebrew
 - find out by yourself. I cant remember any other
+
+### UDPBD
+how to make your old homebrew read data from UDPBD Server as if it was a USB device (might cause issues if that homebrew emits USB IOCTL commands)
+
+- `bdm_assault.irx` must be pasted into `mc?:/POPSTARTER/usbd.irx`
+- `udp_bd_assault.irx` must be pasted into `mc?:/POPSTARTER/usbhdfsd.irx`
+
+#### FreeMcBoot
+- `bdm_assault.irx` must be pasted into `mc?:/SYS-CONF/USBD.IRX`
+- `udp_bd_assault.irx` must be pasted into `mc?:/SYS-CONF/USBHDFSD.IRX`
+
+#### old wLaunchELF versions
+- `bdm_assault.irx` must be pasted into the path you configured for `USBD.IRX`
+- `udp_bd_assault.irx` must be pasted into the path you configured for `USBHDFSD.IRX`
+
+### TTY Interception
+if you are trying to find an issue on an old homebrew wich can load dev9.irx from an external file (or uses IOPRP image)
+you can use `udp_bd_assault-no_udp.irx`, this IRX serves as a replacement of DEV9 that also redirects all the TTY into UDP Broadcast
 
 ## CREDITS
 
