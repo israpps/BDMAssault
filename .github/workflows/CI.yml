@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  repository_dispatch:
+    types: [Component_update]
+  push:
+    branches:
+      - '*'
+    tags:
+      - 'v*'
+    paths-ignore:
+      - '**.MD'
+      - '**.gitkeep'
+      - '**.gitignore'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ps2dev/ps2dev:latest
+    steps:
+
+      - name: Install dependencies
+        run: |
+          apk add build-base git p7zip
+
+      - uses: actions/checkout@v3
+      - run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch --prune --unshallow
+
+      - name: Compile 
+        run: |
+          make -C libbdm clean all
+          make -C __bdm_assault/ clean all
+          make -C __usbd_bd_assault/ clean all
+          mkdir -p READY_TO_USE/POPStarter/POPSTARTER/
+          mkdir -p READY_TO_USE/FreeMcBoot/SYS-CONF/
+          cp bdm_assault.irx READY_TO_USE/POPStarter/POPSTARTER/usbd.irx
+          cp usbd_bd_assault.irx READY_TO_USE/POPStarter/POPSTARTER/usbhdfsd.irx
+          cp bdm_assault.irx READY_TO_USE/FreeMcBoot/SYS-CONF/USBD.IRX
+          cp usbd_bd_assault.irx READY_TO_USE/FreeMcBoot/SYS-CONF/USBHDFSD.IRX
+          7z a -t7z BDMAssault.7z *.irx LICENSE README.MD READY_TO_USE/*
+
+      - name: Upload artifacts
+        if: ${{ success() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: BDM_ASSAULT
+          path: |
+            *.irx
+
+      - name: Create release
+        if: github.ref == 'refs/heads/main'
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: "latest"
+          title: "Latest development build"
+          files: |
+            BDMAssault.7z
