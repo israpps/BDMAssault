@@ -8,6 +8,9 @@
         "ff.h": "c",
         "diskio.h": "c",
         "fs_driver.h": "c",
-        "scsi.h": "c"
+        "scsi.h": "c",
+        "xfer.h": "c",
+        "udptty.h": "c",
+        "ministack.h": "c"
     }
 }
