@@ -19,10 +19,6 @@ To use this project you have to place the two IRX binaries provided at the [rele
 - `bdm_assault.irx` must be pasted into the path you configured for `USBD.IRX`
 - `usbd_bd_assault.irx` must be pasted into the path you configured for `USBHDFSD.IRX`
 
-### Simple Media System (SMS)
-- `bdm_assault.irx` must be pasted into `mc?:/SMS/USBD.IRX`
-- `usbd_bd_assault.irx` must be pasted into `mc?:/SMS/USBM.IRX`
-
 ### Any other homebrew
 - find out by yourself. I cant remember any other.
 
